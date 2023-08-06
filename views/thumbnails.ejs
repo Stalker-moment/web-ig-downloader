@@ -1,0 +1,25 @@
+<!-- views/thumbnails.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>INSTAGRAM DOWNLOADER</title>
+  <link rel="icon" href="https://www.stouffvilletoyota.com/wp-content/uploads/2019/08/download-logo-png-image-77292-300x300.png" type="image/png">
+</head>
+<body>
+  <div style="font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0; padding: 0;">
+    <div style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);">
+      <h1 style="color: #333;">INSTAGRAM DOWNLOADER</h1>
+      <% jsonData.data.forEach((item, index) => { %>
+        <div style="margin-bottom: 20px;">
+          <img src="<%= item.thumbnail %>" alt="Thumbnail <%= index + 1 %>" style="max-width: 100%; height: auto; border-radius: 5px;">
+          <br>
+          <a href="<%= item.url %>" target="_blank">
+            <button style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; text-decoration: none; cursor: pointer;">Unduh content <%= index + 1 %> </button>
+          </a>
+          <br><br>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</body>
+</html>
