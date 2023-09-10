@@ -1,5 +1,5 @@
 const express = require('express');
-const snapsave = require("snapsave-downloader");
+const snapsave = require("snapsave-downloader2");
 const bodyParser = require('body-parser');
 const ejs = require('ejs'); // Tambahkan baris ini
 
