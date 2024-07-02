@@ -25,7 +25,18 @@ app.post('/', async (req, res) => {
     res.render('thumbnails', { jsonData }); // Mengubah ini untuk merender halaman EJS bernama 'thumbnails' dengan data JSON
   } catch (error) {
     console.log('Gagal mendapatkan data dari URL:', url);
-    res.render('error'); // Buat halaman EJS bernama 'error' untuk menampilkan pesan kesalahan
+    res.render('404_production'); // Buat halaman EJS bernama 'error' untuk menampilkan pesan kesalahan
+  }
+});
+
+app.use((req, res, next) => {
+  if (req.method === 'GET') {
+    res.status(404).render('404_production');
+  } else {
+    res.status(404).json({
+      code: 404,
+      message: "Not Found"
+    });
   }
 });
 
