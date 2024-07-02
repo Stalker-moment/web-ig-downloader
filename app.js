@@ -2,6 +2,8 @@ const express = require('express');
 const snapsave = require("snapsave-downloader2");
 const bodyParser = require('body-parser');
 const ejs = require('ejs'); // Tambahkan baris ini
+const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const port = 3000;
@@ -28,6 +30,23 @@ app.post('/', async (req, res) => {
     res.render('404_production'); // Buat halaman EJS bernama 'error' untuk menampilkan pesan kesalahan
   }
 });
+
+app.get("/file/:name", (req, res) => {
+  const { name } = req.params;
+  const filePath = path.join(__dirname, 'file', name);
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).send("File not found.");
+  }
+
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error("Error sending file:", err);
+      res.status(500).send("Error sending file.");
+    }
+  });
+});
+
 
 app.use((req, res, next) => {
   if (req.method === 'GET') {
